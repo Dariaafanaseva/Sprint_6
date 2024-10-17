@@ -11,7 +11,7 @@ class OrderPage(BasePage):
 
     @allure.step('Создаем заказ с кнопкой "Заказать" вверху станицы')
     def make_order_button_on_header(self, name, surname, address, telephone):
-        self.find_element_with_wait(MakeOrderLocators.COOKIE_BUTTON).click()
+        self.accept_cookies(MakeOrderLocators.COOKIE_BUTTON)
         self.find_element_with_wait(MainPageLocators.MAKE_ORDER_BUTTON_ON_HEADER).click()
         self.add_text_to_element(MakeOrderLocators.NAME_INPUT_FIELD, name)
         self.add_text_to_element(MakeOrderLocators.SURNAME_INPUT_FIELD, surname)
@@ -30,7 +30,7 @@ class OrderPage(BasePage):
 
     @allure.step('Создаем заказ с кнопкой "Заказать" внизу станицы')
     def make_order_button_on_down(self, name, surname, address, telephone):
-        self.find_element_with_wait(MakeOrderLocators.COOKIE_BUTTON).click()
+        self.accept_cookies(MakeOrderLocators.COOKIE_BUTTON)
         self.scroll_to_element(MainPageLocators.TITLE_QUESTIONS)
         self.find_element_with_wait(MainPageLocators.MAKE_ORDER_BUTTON_ON_DOWN).click()
         self.add_text_to_element(MakeOrderLocators.NAME_INPUT_FIELD, name)
