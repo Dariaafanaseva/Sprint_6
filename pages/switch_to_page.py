@@ -1,4 +1,5 @@
 import allure
+import pytest
 from pages.base_page import BasePage
 from locators.switch_locators import SwitchToPageLocators
 from locators.make_order_locators import MakeOrderLocators
@@ -13,13 +14,16 @@ class SwitchToPage(BasePage):
     def switch_to_scooter_main_page(self):
         self.accept_cookies(MakeOrderLocators.COOKIE_BUTTON)
         self.click_to_element(MainPageLocators.MAKE_ORDER_BUTTON_ON_HEADER)
-        self.find_element_with_wait(SwitchToPageLocators.HEADER_LOGO_SCOOTER)
-        self.switch_to.window(self.window_handles[-1])
+        self.find_element_with_wait(SwitchToPageLocators.HEADER_LOGO_SCOOTER).click()
 
+    @allure.step('Переходим на страницу Дзена, при нажатии на лого Яндекс')
+    def switch_to_dzen(self):
+        self.accept_cookies(MakeOrderLocators.COOKIE_BUTTON)
+        self.click_to_element(MainPageLocators.MAKE_ORDER_BUTTON_ON_HEADER)
+        self.find_element_with_wait(SwitchToPageLocators.HEADER_LOGO_YANDEX).click()
+        self.driver.switch_to.window(self.driver.window_handles[-1])
+        self.find_element_with_wait(SwitchToPageLocators.DZEN_SEARCH_BAR_BUTTON)
 
-    @allure.step('Проверяем наличие кнопки "заказать" на главной странице')
-    def find_element_main_page(self):
-        self.find_element_with_wait(MainPageLocators.MAKE_ORDER_BUTTON_ON_HEADER)
 
 
 
