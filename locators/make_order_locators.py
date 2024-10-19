@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 
 
 class MakeOrderLocators:
-    COOKIE_BUTTON = By.ID, "rcc-confirm-button"
+
     NAME_INPUT_FIELD = By.XPATH, '//input[@placeholder="* Имя"]'
     SURNAME_INPUT_FIELD = By.XPATH, '//input[@placeholder="* Фамилия"]'
     ADDRESS_INPUT_FIELD = By.XPATH, '//input[@placeholder="* Адрес: куда привезти заказ"]'

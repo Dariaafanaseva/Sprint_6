@@ -1,30 +1,30 @@
 import allure
-import pytest
-
-from page_object.pages.base_page import BasePage
+from pages.base_page import BasePage
 from locators.main_page_locators import MainPageLocators
-from locators.make_order_locators import MakeOrderLocators
-from pages.main_page import MainPage
+from data import ANSWER_TEXTS
 
+class MainPage(BasePage):
 
-class OrderPage(BasePage):
+    @allure.step('Переходим на страницу самоката')
+    def get(self, url):
+        self.driver.get(url)
+    @allure.step('Кликаем на вопрос')
+    def click_to_question(self, locator_q_formatted):
+        #locator_8_formatted = self.format_locators(
+            #MainPageLocators.ANSWER_LOCATOR, 7)
+        self.accept_cookies(MainPageLocators.COOKIE_BUTTON)
+        self.scroll_to_element(MainPageLocators.LAST_QUESTION_LOCATOR)
+        self.click_to_element(locator_q_formatted)
 
-    @allure.step('Создаем заказ')
-    def set_order(self, station_locator, name_locator, name,
-                  last_name, address, time, button_locator):
-        self.click_to_element(MainPageLocators.MAKE_ORDER_BUTTON_ON_HEADER)
-        self.add_text_to_element(MakeOrderLocators.NAME_INPUT_FIELD, 'Дарья')
-        self.add_text_to_element(MakeOrderLocators.SURNAME_INPUT_FIELD, 'Афанасьева')
-        self.add_text_to_element(MakeOrderLocators.ADDRESS_INPUT_FIELD, 'Ленина 1')
-        self.cli
-        self.click_to_element(time)
-        self.click_to_element(button_locator)
+    @allure.step('Получаем текст с ответа')
+    def get_answer_text_1(self, locator_a_formatted):
+        return self.get_text_from_element(locator_a_formatted)
 
-    @allure.step('Проверяем, что заказ создался')
-    def check_order(self, locator):
-        return self.get_text_from_element(locator)
-
-class TestMainPage:
-
-
+    def get_answer_text(self, num):
+        locator_q_formatted = self.format_locators(
+            MainPageLocators.QUESTION_LOCATOR, num)
+        locator_a_formatted = self.format_locators(
+            MainPageLocators.ANSWER_LOCATOR, num)
+        self.click_to_question(locator_q_formatted)
+        return self.get_answer_text_1(locator_a_formatted)
 
