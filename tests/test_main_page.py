@@ -3,6 +3,7 @@ import pytest
 
 from data import ANSWER_TEXTS
 from pages.main_page import MainPage
+from locators.main_page_locators import MainPageLocators
 
 
 class TestMainPage:
@@ -24,5 +25,6 @@ class TestMainPage:
     def test_questions_and_answers(self, driver, num, result):
         main_page = MainPage(driver)
         main_page.get(("https://qa-scooter.praktikum-services.ru/"))
+        main_page.accept_cookies(MainPageLocators.COOKIE_BUTTON)
         assert main_page.get_answer_text(num) == result
 

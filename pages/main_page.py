@@ -10,9 +10,6 @@ class MainPage(BasePage):
         self.driver.get(url)
     @allure.step('Кликаем на вопрос')
     def click_to_question(self, locator_q_formatted):
-        #locator_8_formatted = self.format_locators(
-            #MainPageLocators.ANSWER_LOCATOR, 7)
-        self.accept_cookies(MainPageLocators.COOKIE_BUTTON)
         self.scroll_to_element(MainPageLocators.LAST_QUESTION_LOCATOR)
         self.click_to_element(locator_q_formatted)
 
