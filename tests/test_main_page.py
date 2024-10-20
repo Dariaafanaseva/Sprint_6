@@ -1,6 +1,5 @@
 import allure
 import pytest
-
 from data import ANSWER_TEXTS
 from pages.main_page import MainPage
 from locators.main_page_locators import MainPageLocators
@@ -8,7 +7,7 @@ from locators.main_page_locators import MainPageLocators
 
 class TestMainPage:
     @allure.description(
-        'Проверяем, что при клике на вопрос ответ правильный')
+        'Проверяем, что при клике на вопрос, ответ правильный')
     @pytest.mark.parametrize(
         'num, result',
         [
